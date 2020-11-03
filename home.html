@@ -23,8 +23,8 @@
             </div>
             </div><br/><br/>
             Set Image Height and Width<br/><br/>
-            <div class="InputArea">Height : <input type="number" name="height"placeholder="eg :768" required></input></div>
-            <div class="InputArea">Width : <input type="number" name="widht"placeholder="eg :1024" required></input><br/></div>
+            <div class="InputArea">Height : <input type="number" id="height"placeholder="eg :768" required></input></div>
+            <div class="InputArea">Width : <input type="number" id="width"placeholder="eg :1024" required></input><br/></div>
             <div class="InputUrl">Enter URL : <input type="url" id="url" placeholder="Url" required/></div>
            <br/>
       <button onclick="myFunction()">Preview</button>
@@ -40,9 +40,11 @@ $(document).on('ready', function() {
 function myFunction() {
 	var url_val=(document.getElementById('url').value);
 	var form = document.getElementById("test");
+	var height = document.getElementById("height");
+	var width = document.getElementById("width");
 	var img_format=(form.elements["image"].value);
     document.getElementById('insertCode').innerHTML = "";
-    GrabzIt("NmFmMWI3ZWE5ZWU4NDVjOGE5MTA0MWE2OWFkY2ZmMmQ=").ConvertURL(url_val, {"delay": 1, "format": img_format, "bwidth":1024 ,"bheight":768}).AddTo("insertCode");
+    GrabzIt("NmFmMWI3ZWE5ZWU4NDVjOGE5MTA0MWE2OWFkY2ZmMmQ=").ConvertURL(url_val, {"delay": 1, "format": img_format, "bwidth":width ,"bheight":height}).AddTo("insertCode");
     $('#download-btn').show();
 }
 
