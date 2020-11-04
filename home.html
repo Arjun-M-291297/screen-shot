@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/@grabzit/js@3.4.8/grabzit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<link rel="stylesheet" href="app.css">
+
+</head>
+<body>
+<center>
+<form>
+        <h1>Enter the Url</h1>
+URL : <input type="text" name="url" id="url">
+</form>
+<button onclick="myFunction()">Preview</button>
+<div class ="Screenshot" id="insertCode"></div>
+<button class ="down" onclick="downloadtable()" id="download-btn">Download</button></center>
+<script type="text/javascript">
+
+$(document).on('ready', function() {
+   $('#download-btn').hide();
+});
+
+function myFunction() {
+    var url_val=(document.getElementById('url').value);
+    $('#download-btn').hide();
+    document.getElementById('insertCode').innerHTML = "";
+    GrabzIt("NmFmMWI3ZWE5ZWU4NDVjOGE5MTA0MWE2OWFkY2ZmMmQ=").ConvertURL(url_val, {"delay": 1, "format": "jpg"}).AddTo("insertCode");
+    $('#download-btn').show();
+}
+
+ function downloadtable() {
+
+        var node = $('#insertCode img')[0];
+
+        domtoimage.toPng(node)
+            .then(function (dataUrl) {
+                var img = new Image();
+                img.src = dataUrl;
+                downloadURI(dataUrl, "records.png")
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error);
+            });
+
+    }
+
+    function downloadURI(uri, name) {
+        var link = document.createElement("a");
+        link.download = name;
+        link.href = uri;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        delete link;
+    }
+
+</script>
+
+
+</body>
+</html>
