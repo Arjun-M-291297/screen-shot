@@ -1,1 +1,1 @@
-# screen-shot
+# Wait for preview to show
